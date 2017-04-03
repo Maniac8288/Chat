@@ -2,30 +2,49 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<div align="center"><h1>Чат</h1></div>
+    <div id='messages' class="well"></div>
+<div class="well" style="margin-top:5px; width:550px;">
+    <form>
+        <div class="form-group">
+            <label for="user" class="col-md-3">Никнейм</label>
+            <input type="text" class="col-md-8 form-control" id="user"  />
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="message" class="col-md-3"style="margin-top:20px;">Сообщение</label>
+            <textarea class="col-md-6 form-control" id="message" rows="4" style="margin-top:20px;"></textarea>
+            <input type="button" class=" btn btn-info" value="Отправить" id="send" style="margin-top:90px; margin-left:5px;" />
+        </div>
+        
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+     
+    </form>
 </div>
+<script type="text/javascript">
+        var socket,
+            $txt = document.getElementById('message'),
+            $user = document.getElementById('user'),
+            $messages = document.getElementById('messages');
+
+        if (typeof (WebSocket) !== 'undefined') {
+            socket = new WebSocket("ws://localhost:50249/Models/ChatHandler.ashx");
+        } else {
+            socket = new MozWebSocket("ws://localhost:50249/Models/ChatHandler.ashx");
+        }
+
+        socket.onmessage = function (msg) {
+            var $el = document.createElement('p');
+            $el.innerHTML = msg.data;
+            $messages.appendChild($el);
+        };
+
+        socket.onclose = function (event) {
+            alert('Мы потеряли её. Пожалуйста, обновите страницу');
+        };
+
+        document.getElementById('send').onclick = function () {
+            socket.send($user.value + ' : ' + $txt.value);
+            $txt.value = '';
+        };
+</script>
