@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat", "Chat\Chat.csproj", "{BD25E44F-9955-4B2B-BA4F-4AFFAC2D0A28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLib", "TestLib\TestLib.csproj", "{E9FFB8E1-AE5F-4917-A29A-9664FE02A668}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSIXChatProject", "VSIXChatProject\VSIXChatProject.csproj", "{B596BE3C-D54C-4EE8-89F8-5DC544DD75D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{BD25E44F-9955-4B2B-BA4F-4AFFAC2D0A28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD25E44F-9955-4B2B-BA4F-4AFFAC2D0A28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD25E44F-9955-4B2B-BA4F-4AFFAC2D0A28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9FFB8E1-AE5F-4917-A29A-9664FE02A668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9FFB8E1-AE5F-4917-A29A-9664FE02A668}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9FFB8E1-AE5F-4917-A29A-9664FE02A668}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9FFB8E1-AE5F-4917-A29A-9664FE02A668}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B596BE3C-D54C-4EE8-89F8-5DC544DD75D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B596BE3C-D54C-4EE8-89F8-5DC544DD75D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B596BE3C-D54C-4EE8-89F8-5DC544DD75D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B596BE3C-D54C-4EE8-89F8-5DC544DD75D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
