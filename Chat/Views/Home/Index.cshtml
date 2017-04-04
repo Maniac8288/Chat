@@ -12,7 +12,7 @@
         </div>
         <br />
         <div class="form-group">
-            <label for="message" class="col-md-3"style="margin-top:20px;">Сообщение</label>
+            <label for="message" class="col-md-3"style="margin-top:20px;" onkeydown="">Сообщение</label>
             <textarea class="col-md-6 form-control" id="message" rows="4" style="margin-top:20px;"></textarea>
             <input type="button" class=" btn btn-info" value="Отправить" id="send" style="margin-top:90px; margin-left:5px;" />
         </div>
@@ -22,6 +22,7 @@
     </form>
 </div>
 <script type="text/javascript">
+    var sound = false;
         var socket,
             $txt = document.getElementById('message'),
             $user = document.getElementById('user'),
@@ -36,15 +37,23 @@
         socket.onmessage = function (msg) {
             var $el = document.createElement('p');
             $el.innerHTML = msg.data;
-            $messages.appendChild($el);
+            $('#messages').prepend($el);
+            if (sound == false) {
+                var audio = new Audio();
+                audio.src = '/sound.mp3';
+                audio.autoplay = true;
+            }
         };
 
         socket.onclose = function (event) {
-            alert('Мы потеряли её. Пожалуйста, обновите страницу');
+            alert('Мы потеряли связь. Пожалуйста, обновите страницу');
         };
 
+       
         document.getElementById('send').onclick = function () {
-            socket.send($user.value + ' : ' + $txt.value);
+            sound = true;
+            socket.send('<strong>' + $user.value + ': </strong>' + $txt.value);
+            setTimeout(function () { sound = false; }, 1000);
             $txt.value = '';
         };
 </script>
